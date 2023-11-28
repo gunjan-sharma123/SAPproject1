@@ -1,0 +1,158 @@
+<mvc:View controllerName="saptask2.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form" 
+    >
+    <Page id="page" title="Student Record">
+        <content>
+            <Panel id="panel" headerText="Student Form" expandable="true" expanded="true" class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto">
+                <content>                                
+                    <f:SimpleForm layout="ColumnLayout" editable="true" id="simple-form">
+                        <f:toolbar>
+                            <Toolbar id="t1">
+                                <content>
+                                    <ToolbarSpacer id="ts"/>
+                                    <Button id="btn1" icon="sap-icon://create" text="ADD STUDENT" press=".onSave"/>
+                                </content>
+                            </Toolbar>
+                        </f:toolbar>
+                        <f:content>
+                            <core:Title text="General Data" id="gd"/>
+                            <Label text="Student ID" id="stu-id"/>
+                            <Input value="{student>/StudentID}" id="stu-id1"/>
+
+                            <Label text="Student Name" id="stu-name"/>
+                            <Input value="{student>/StudentName}" id="stu-name1"/>
+
+                            <Label text="Student DOB" id="stu-dob"/>
+                            <Input value="{student>/StudentDOB}" id="stu-dob1"/>
+
+                            <core:Title text="Student Address Data" id="add-d"/>
+                            <Label text="Street" id="stu-str"/>
+                            <Input value="{student>/Street}" id="stu-str1"/>
+
+                            <Label text="Post Code" id="stu-code"/>
+                            <Input value="{student>/PostCode}" id="stu-code1"/>
+
+                            <Label text="City" id="city"/>
+                            <Input value="{student>/City}" id="city1"/>
+
+                            <Label text="Country" id="con"/>
+                            <Input value="{student>/Country}" id="con1"/>                  
+
+                            <core:Title text="Student Contact Data" id="con-data"/>
+                            <Label text="Student Email" id="email"/>                    
+                            <Input value="{student>/Email}" id="email1"/>
+
+                            <Label text="Student Telephone" id="tel"/>
+                            <Input value="{student>/Telephone}" id="tel1"/>                     
+                        </f:content>
+                    </f:SimpleForm>
+                </content>
+            </Panel>
+             <Table headerText="Student Table" growing="true" growingThreshold="5" class="sapUiResponsiveMargin" width="auto"
+                   items="{student>/student}" id="tab1">
+                <columns>
+                     <Column id="col1">
+                        <header>
+                            <Text text="Student ID" id="tb1"/>
+                        </header>                        
+                    </Column>
+                    <Column  id="col2">
+                        <header>
+                            <Text text="Student Name" id="tb2"/>
+                        </header>                        
+                    </Column>
+                    <Column  id="col3">
+                        <header>
+                            <Text text="Student DOB" id="tb3"/>
+                        </header>                        
+                    </Column>
+                    <Column  id="col4">
+                        <header>
+                            <Text text="Street" id="tb4"/>
+                        </header>                        
+                    </Column>
+                    <Column  id="col5">
+                        <header>
+                            <Text text="Post Code" id="tb5"/>
+                        </header>                        
+                    </Column>
+                    <Column  id="col6">
+                        <header>
+                            <Text text="City" id="tb6"/>
+                        </header>                        
+                    </Column>
+                     <Column  id="col7">
+                        <header>
+                            <Text text="Country" id="tb7"/>
+                        </header>                        
+                    </Column>
+                     <Column  id="col8">
+                        <header>
+                            <Text text="Student Email" id="tb8"/>
+                        </header>                        
+                    </Column>
+                    <Column  id="col9">
+                        <header>
+                            <Text text="Student Telephone" id="tb9"/>
+                        </header>                        
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="cl1">
+                        <cells>
+                            <Text text="{student>StudentID}" id="b1"/>
+                            <Text text="{student>StudentName}" id="b2"/>
+                            <Text text="{student>StudentDOB}" id="b3"/>
+                            <Text text="{student>Street}" id="b4"/>
+                            <Text text="{student>PostCode}" id="b5"/>
+                            <Text text="{student>City}" id="b6"/>
+                            <Text text="{student>Country}" id="b7"/>
+                            <Text text="{student>Email}" id="b8"/>
+                            <Text text="{student>Telephone}" id="b9"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+ <Panel id="panel2" headerText="Activity TABLE" expandable="true" 
+ expanded="true" class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto">
+                <content>
+<Button id="btn2" icon="sap-icon://create" text="ADD Activity" press="showactivity"/>
+            <Table id="StudentActivityTable" headerText="StudentActivityTable"
+             items="{_Activity}" growing="true" growingThreshold="5"
+              class="sapUiResponsiveMargin" width="auto">
+                <columns>
+                    <Column id="col11">
+                        <header>
+                            <Text text="No of Activity" id="text1"/>
+                        </header>                        
+                    </Column>
+                    <Column id="col12">
+                        <header>
+                            <Text text="Activity Name" id="text2"/>
+                        </header>                        
+                    </Column>
+                    <Column id="col13">
+                        <header>
+                            <Text text="Cost" id="text3"/>
+                        </header>                        
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="col-lst1">
+                        <cells>
+                            <Text text="{student>Activityno1}" id="txt1"/>
+                            <Text text="{student>ActivityName1}" id="txt2"/> 
+                            <Text text="{student>ActivityCost1}" id="txt3"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            </content>
+      </Panel>
+
+        </content>
+    </Page>
+</mvc:View>

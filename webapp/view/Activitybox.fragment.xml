@@ -1,0 +1,21 @@
+<!-- YourFragment.fragment.xml -->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" id="f1">
+   <Dialog title="Add Activity" draggable="true" resizable="true" contentWidth="300px" id="d1">
+        <VBox id="vb1">
+            <Label text="Activity No" id="l1"/>
+            <Input id="a1" />
+
+            <Label text="Activity Name" id="l2"/>
+            <Input id="a2" />
+
+            <Label text="Activity Cost" id="l3"/>
+            <Input id="a3" />
+        </VBox>
+        <beginButton>
+            <Button text="Submit" press="onSubmitDialogbox" id="btn1"/>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onCancelDialogbox" id="btn2"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

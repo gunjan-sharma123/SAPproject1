@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core">
+   <Dialog
+      id="dialog"
+      title="Info" type="Message">
+        <content>
+                     <Text id="txt1" text="Student {student>/StudentName} Your Data saved successfully"/>
+        </content>
+        <beginButton>
+            <Button
+                id="btn2"
+                text="Ok"
+                press=".onCloseDialog"/>
+        </beginButton>
+   </Dialog>
+</core:FragmentDefinition>
