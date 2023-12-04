@@ -3,7 +3,7 @@
    <Dialog title="Add Activity" draggable="true" resizable="true" contentWidth="300px" id="d1">
         <VBox id="vb1">
             <Label text="Activity No" id="l1"/>
-            <Input id="a1" />
+            <Input id="a1"  />
 
             <Label text="Activity Name" id="l2"/>
             <Input id="a2" />

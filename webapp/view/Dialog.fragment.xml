@@ -9,7 +9,7 @@
         </content>
         <beginButton>
             <Button
-                id="btn2"
+                id="btn22"
                 text="Ok"
                 press=".onCloseDialog"/>
         </beginButton>

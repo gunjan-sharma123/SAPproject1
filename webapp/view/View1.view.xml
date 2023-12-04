@@ -51,8 +51,10 @@
                     </f:SimpleForm>
                 </content>
             </Panel>
-             <Table headerText="Student Table" growing="true" growingThreshold="5" class="sapUiResponsiveMargin" width="auto"
-                   items="{student>/student}" id="tab1">
+             <Table headerText="Student Table" growing="true" growingThreshold="5" 
+             class="sapUiResponsiveMargin" width="auto"
+                   items="{student>/student}" id="tab1" mode="SingleSelectLeft" 
+                   selectionChange=".onCustomerChange">
                 <columns>
                      <Column id="col1">
                         <header>
@@ -120,8 +122,10 @@
  expanded="true" class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto">
                 <content>
 <Button id="btn2" icon="sap-icon://create" text="ADD Activity" press="showactivity"/>
+            
+            
             <Table id="StudentActivityTable" headerText="StudentActivityTable"
-             items="{_Activity}" growing="true" growingThreshold="5"
+             items="{_Activity1}" growing="true" growingThreshold="5"
               class="sapUiResponsiveMargin" width="auto">
                 <columns>
                     <Column id="col11">
@@ -143,9 +147,9 @@
                 <items>
                     <ColumnListItem id="col-lst1">
                         <cells>
-                            <Text text="{student>Activityno1}" id="txt1"/>
-                            <Text text="{student>ActivityName1}" id="txt2"/> 
-                            <Text text="{student>ActivityCost1}" id="txt3"/>
+                            <ObjectIdentifier title="{Activityno1}" id="txt11"/>
+                            <ObjectIdentifier title="{ActivityName1}" id="txt12"/> 
+                            <ObjectIdentifier title="{ActivityCost1}" id="txt13"/>
                         </cells>
                     </ColumnListItem>
                 </items>

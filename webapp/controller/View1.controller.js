@@ -21,9 +21,9 @@ sap.ui.define([
                  // Assuming you have access to the form data
             // Get the JSON model
             var oModel = this.getView().getModel("student");
-
+console.log(oModel);
             // Add the new form data to the model
-            var aStudents = oModel.getProperty("/student") || [];
+            var aStudents = oModel.getProperty("/student");
             // Assuming formData is an object representing your form data
   // Get values from the input fields
  var sStudentID = this.byId("stu-id1").getValue();
@@ -70,9 +70,7 @@ sap.ui.define([
  // Clear the input fields after closing the dialog
  this.clearFormFields();
 
-            var formData;
-            aStudents.push(formData);
-            oModel.setProperty("/student", aStudents);
+           
 
 
                 // create dialog lazily
@@ -114,6 +112,26 @@ sap.ui.define([
                 this.byId("dialog").close();
             },
 
+            onCustomerChange: function (oEvent) {
+                // Get the JSON model
+            var oModel = this.getView().getModel("student");
+            console.log(oModel);
+                var oListItem = oEvent.getParameter("listItem");
+                
+                if (oListItem) {
+                    var oBindingContext = oListItem.getBindingContext();
+                    console.log(oBindingContext);
+            
+                    if (oBindingContext) {
+                        this.byId("StudentActivityTable").setBindingContext(oBindingContext);
+                    } else {
+                        console.error("Binding context is undefined.");
+                    }
+                } else {
+                    console.error("List item is undefined.");
+                }
+            },
+
             showactivity: function () {
                 // Load the fragment
                 if (!this.yourDialog) {
@@ -129,46 +147,72 @@ sap.ui.define([
                 // Close the fragment when the "Close" button is pressed
                 this.yourDialog.close();
               },
-onSubmitDialogbox: function () {
- //var oFragment = sap.ui.xmlfragment("saptask2.view.Activitybox", this);
-   // var fragmentId = this.getView().createId("frActivity");
-    var a1 = sap.ui.core.Fragment.byId("f1","a1");
-    //var activityNameInput = this.byId("ActivityName");
-    //var activityCostInput = this.byId("ActivityCost");
-    
-    if (!activityNoInput || !activityNameInput || !activityCostInput) {
-        MessageBox.error("One or more input fields not found.");
+         onSubmitDialogbox: function () {
+    // Instantiate the fragment
+    if (!this._oAddDataDialog) {
+        this._oAddDataDialog = sap.ui.xmlfragment("saptask2.view.Activitybox", this);
+        this.getView().addDependent(this._oAddDataDialog);
+    }
+
+    // Get values from the input fields
+    var oActivityNoInput = this.byId("a1");
+    var oActivityNameInput = this.byId("a2");
+    var oActivityCostInput = this.byId("a3");
+
+    // Check if controls are found
+    if (!oActivityNoInput || !oActivityNameInput || !oActivityCostInput) {
+        MessageBox.error("Input controls not found.");
         return;
     }
-    
-    var formData = {
-        sActivityno: activityNoInput.getValue(),
-        sActivityName: activityNameInput.getValue(),
-        sActivityCost: activityCostInput.getValue()
-    };
 
-    // Get the existing array of students from the model
-    var aStudents = oModel.getProperty("/student") || [];
-
-    
-    // Add the new form data to the students array
-    aStudents.push(formData);
-
-    // Set the updated students array back to the model
-    oModel.setProperty("/student", aStudents);
+    var sActivityNo = oActivityNoInput.getValue();
+    var sActivityName = oActivityNameInput.getValue();
+    var sActivityCost = oActivityCostInput.getValue();
 
     // Validate the input fields
-    if (!formData.sActivityno || !formData.sActivityName || !formData.sActivityCost) {
-        // If any field is empty, show an error message or handle it as per your requirement
+    if (!sActivityNo || !sActivityName || !sActivityCost) {
         MessageBox.error("Please fill in all fields.");
         return;
     }
 
-    
+    // Assuming you have a JSON model named "student" for simplicity
+    var oModel = this.getView().getModel("student");
 
+    // Add new entry to the model
+    oModel.getData().student.push({
+        ActivityNo: sActivityNo,
+        ActivityName: sActivityName,
+        ActivityCost: sActivityCost,
+    });
 
-              },
-              
+    // Update the table binding to reflect the changes
+    var oTable = this.byId("StudentActivityTable");
+    oTable.getModel("student").refresh();
+
+    // Update the model
+    oModel.refresh();
+
+    // Close the dialog
+    this._oAddDataDialog.close();
+
+    // Clear the input fields after closing the dialog
+    this.clearInputFields();
+},
+
+clearInputFields: function () {
+    // Clear the input fields based on your control IDs
+    var oActivityNoInput = this.byId("a1");
+    var oActivityNameInput = this.byId("a2");
+    var oActivityCostInput = this.byId("a3");
+
+    if (oActivityNoInput && oActivityNameInput && oActivityCostInput) {
+        oActivityNoInput.setValue("");
+        oActivityNameInput.setValue("");
+        oActivityCostInput.setValue("");
+    }
+},
+            
+            
             onCancelDialog: function () {
                 // Close the dialog without saving
                 this._oAddDataDialog.close();
