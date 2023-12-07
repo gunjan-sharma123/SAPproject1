@@ -125,7 +125,7 @@
             
             
             <Table id="StudentActivityTable" headerText="StudentActivityTable"
-             items="{_Activity1}" growing="true" growingThreshold="5"
+             items="{student>_Activity1}" growing="true" growingThreshold="5"
               class="sapUiResponsiveMargin" width="auto">
                 <columns>
                     <Column id="col11">
@@ -147,9 +147,9 @@
                 <items>
                     <ColumnListItem id="col-lst1">
                         <cells>
-                            <ObjectIdentifier title="{Activityno1}" id="txt11"/>
-                            <ObjectIdentifier title="{ActivityName1}" id="txt12"/> 
-                            <ObjectIdentifier title="{ActivityCost1}" id="txt13"/>
+                            <ObjectIdentifier title="{student>Activityno1}" id="txt11"/>
+                            <ObjectIdentifier title="{student>ActivityName1}" id="txt12"/> 
+                            <ObjectIdentifier title="{student>ActivityCost1}" id="txt13"/>
                         </cells>
                     </ColumnListItem>
                 </items>
